@@ -14,75 +14,75 @@
 ActiveRecord::Schema.define(version: 20160220105121) do
 
   create_table "characters", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "portrait"
-    t.integer  "story_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
+    t.string   "portrait",    limit: 255
+    t.integer  "story_id",    limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "characters", ["story_id"], name: "index_characters_on_story_id"
+  add_index "characters", ["story_id"], name: "index_characters_on_story_id", using: :btree
 
   create_table "events", force: :cascade do |t|
-    t.integer  "pose_id"
-    t.integer  "position_x"
-    t.integer  "position_y"
-    t.text     "script"
-    t.integer  "scene_id"
-    t.integer  "order"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "pose_id",    limit: 4
+    t.integer  "position_x", limit: 4
+    t.integer  "position_y", limit: 4
+    t.text     "script",     limit: 65535
+    t.integer  "scene_id",   limit: 4
+    t.integer  "order",      limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  add_index "events", ["pose_id"], name: "index_events_on_pose_id"
-  add_index "events", ["scene_id"], name: "index_events_on_scene_id"
+  add_index "events", ["pose_id"], name: "index_events_on_pose_id", using: :btree
+  add_index "events", ["scene_id"], name: "index_events_on_scene_id", using: :btree
 
   create_table "poses", force: :cascade do |t|
-    t.string   "name"
-    t.string   "image"
-    t.integer  "character_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string   "name",         limit: 255
+    t.string   "image",        limit: 255
+    t.integer  "character_id", limit: 4
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
   end
 
-  add_index "poses", ["character_id"], name: "index_poses_on_character_id"
+  add_index "poses", ["character_id"], name: "index_poses_on_character_id", using: :btree
 
   create_table "scenes", force: :cascade do |t|
-    t.string   "name"
-    t.string   "description"
-    t.string   "background"
-    t.integer  "story_id"
-    t.integer  "order"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "name",        limit: 255
+    t.string   "description", limit: 255
+    t.string   "background",  limit: 255
+    t.integer  "story_id",    limit: 4
+    t.integer  "order",       limit: 4
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "scenes", ["story_id"], name: "index_scenes_on_story_id"
+  add_index "scenes", ["story_id"], name: "index_scenes_on_story_id", using: :btree
 
   create_table "stories", force: :cascade do |t|
-    t.string   "title"
-    t.string   "author"
-    t.string   "email"
-    t.string   "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.string   "title",       limit: 255
+    t.string   "author",      limit: 255
+    t.string   "email",       limit: 255
+    t.string   "description", limit: 255
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
   create_table "story_tags", force: :cascade do |t|
-    t.integer  "story_id"
-    t.integer  "tag_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.integer  "story_id",   limit: 4
+    t.integer  "tag_id",     limit: 4
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
   end
 
-  add_index "story_tags", ["story_id"], name: "index_story_tags_on_story_id"
-  add_index "story_tags", ["tag_id"], name: "index_story_tags_on_tag_id"
+  add_index "story_tags", ["story_id"], name: "index_story_tags_on_story_id", using: :btree
+  add_index "story_tags", ["tag_id"], name: "index_story_tags_on_tag_id", using: :btree
 
   create_table "tags", force: :cascade do |t|
-    t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.string   "name",       limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
 end

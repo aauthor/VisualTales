@@ -32,7 +32,6 @@ gulp.task('material-sass', function(){
 gulp.task('watch', function(){
 	gulp.watch(paths.typescript, ['typescript']);
   gulp.watch(paths.appSass, ['app-sass']);
-  gulp.watch(paths.materialSass, ['material-sass']);
 });
 
-gulp.task('default', ['typescript', 'app-sass', 'material-sass', 'watch'])
+gulp.task('default', ['typescript', 'app-sass', 'watch'])
